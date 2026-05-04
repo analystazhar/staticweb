@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background 0.5s, color 0.5s;
+}
+
+/* Light Theme */
+body.light {
+  background: #f1f5f9;
+  color: #000;
+}
+
+/* Dark Theme */
+body.dark {
+  background: #0f172a;
+  color: #fff;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #1e293b;
+  color: white;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 50px;
+}
+
+/* Button */
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: #38bdf8;
+}
+
+/* Animation */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
