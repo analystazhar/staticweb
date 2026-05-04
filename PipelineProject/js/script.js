@@ -1,25 +1,18 @@
-
-// Default theme
-document.body.classList.add("dark");
-
-// Toggle Theme
+// Theme toggle
 function toggleTheme() {
-  if (document.body.classList.contains("dark")) {
-    document.body.classList.replace("dark", "light");
-  } else {
-    document.body.classList.replace("light", "dark");
-  }
+  document.body.classList.toggle("light");
+  document.body.classList.toggle("dark");
 }
 
-// Fetch API Data
+// API call
 function fetchData() {
   fetch("https://api.github.com/users/github")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
       document.getElementById("api-data").innerText =
         `👤 ${data.login} | Followers: ${data.followers}`;
     })
-    .catch(error => {
-      document.getElementById("api-data").innerText = "Error fetching data";
+    .catch(() => {
+      document.getElementById("api-data").innerText = "Error loading data";
     });
 }

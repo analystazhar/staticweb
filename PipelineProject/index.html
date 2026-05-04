@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps Advanced Project</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DevOps Portfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body class="dark">
 
   <!-- Navbar -->
   <nav class="navbar">
-    <h2>DevOps App</h2>
-    <div>
-      <button onclick="toggleTheme()">🌙</button>
-    </div>
+    <h2>🚀 DevOps</h2>
+    <button onclick="toggleTheme()">🌙</button>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
-    <h1 class="fade-in">🚀 CI/CD Live Project</h1>
-    <p class="fade-in">Deployed via GitHub Actions + Nginx + AWS</p>
-    <button onclick="fetchData()">Get API Data</button>
+    <h1>CI/CD Live Deployment</h1>
+    <p>GitHub Actions + Nginx + AWS EC2</p>
+    <button onclick="fetchData()">Fetch GitHub Data</button>
   </section>
 
-  <!-- API Data -->
-  <section>
-    <h2>API Response</h2>
-    <p id="api-data">Click button to load data...</p>
+  <!-- Cards -->
+  <section class="cards">
+    <div class="card">
+      <h3>⚙️ Automation</h3>
+      <p>CI/CD pipeline using GitHub Actions</p>
+    </div>
+
+    <div class="card">
+      <h3>☁️ Cloud</h3>
+      <p>Hosted on AWS EC2 with Nginx</p>
+    </div>
+
+    <div class="card">
+      <h3>🔐 Secure</h3>
+      <p>SSH-based deployment with secrets</p>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="api">
+    <h2>Live API Data</h2>
+    <p id="api-data">Click button to load...</p>
   </section>
 
   <footer>

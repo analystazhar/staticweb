@@ -1,54 +1,95 @@
-body {
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  transition: background 0.5s, color 0.5s;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Light Theme */
-body.light {
-  background: #f1f5f9;
-  color: #000;
+body {
+  transition: 0.4s;
 }
 
-/* Dark Theme */
+/* THEMES */
 body.dark {
   background: #0f172a;
-  color: #fff;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  background: #1e293b;
   color: white;
 }
 
-/* Hero */
+body.light {
+  background: #f1f5f9;
+  color: black;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #1e293b;
+}
+
+/* HERO */
 .hero {
   text-align: center;
-  padding: 50px;
+  padding: 80px 20px;
 }
 
-/* Button */
-button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.hero button {
+  margin-top: 20px;
+  padding: 12px 25px;
   border: none;
-  border-radius: 5px;
   background: #38bdf8;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-/* Animation */
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 2s ease-in forwards;
+/* CARDS */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  flex-wrap: wrap;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
+.card {
+  background: #1e293b;
+  padding: 20px;
+  width: 250px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* API */
+.api {
+  text-align: center;
+  padding: 40px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #1e293b;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
   }
 }
