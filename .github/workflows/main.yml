@@ -1,18 +1,20 @@
-name: Deploy to EC2
+name: CI/CD Deploy to EC2
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # Setup SSH
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
@@ -20,14 +22,28 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy Files to EC2
+      # Test connection
+      - name: Test SSH
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-            sudo rm -rf /usr/share/nginx/html/*
-          EOF
+          ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo Connected"
 
-          scp -r * ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/usr/share/nginx/html/
+      # Clean old files
+      - name: Clean server
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+          "sudo rm -rf /usr/share/nginx/html/*"
 
+      # Deploy files
+      - name: Copy files
+        run: |
+          scp -o StrictHostKeyChecking=no -r ./* \
+          ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/usr/share/nginx/html/
+
+      # Restart nginx
       - name: Restart Nginx
         run: |
-          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "sudo systemctl restart nginx"
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            sudo chown -R nginx:nginx /usr/share/nginx/html
+            sudo chmod -R 755 /usr/share/nginx/html
+            sudo systemctl restart nginx
+          EOF
